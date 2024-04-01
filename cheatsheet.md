@@ -1,5 +1,3 @@
-## 1
-
 rustc src/main.rs
 ./main
 
@@ -8,5 +6,4 @@ cargo check
 cargo build (debug)
 cargo run
 cargo build --release
-
-## 2
+cargo doc --open
