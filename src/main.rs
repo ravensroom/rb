@@ -3,7 +3,49 @@ use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    print_nth_fibonacci();
+    print_12_days_chrismas();
+}
+
+/**
+*  On the first day of Christmas my true love sent to me
+   A partridge in a pear tree
+
+   On the second day of Christmas my true love sent to me
+   Two turtle doves
+   And a partridge in a pear tree
+
+   On the third day of Christmas my true love sent to me
+   Three French hens
+   Two turtle doves
+   And a partridge in a pear tree
+*/
+fn print_12_days_chrismas() {
+    let sections = [0, 1, 2];
+    let gifts = [
+        "A partridge in a pear tree",
+        "Two turtle doves",
+        "Three French hens",
+    ];
+    for section in sections {
+        let section_name = match section {
+            0 => "first",
+            1 => "second",
+            2 => "third",
+            _ => return,
+        };
+        println!(
+            "On the {} day of Christmas my true love sent to me",
+            section_name
+        );
+        for i in (0..=section).rev() {
+            if (i == 0) && (section != 0) {
+                println!("And {}", gifts[i].to_lowercase());
+            } else {
+                println!("{}", gifts[i]);
+            }
+        }
+        println!();
+    }
 }
 
 fn print_nth_fibonacci() {
