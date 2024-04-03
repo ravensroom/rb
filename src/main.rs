@@ -3,7 +3,41 @@ use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    temperature_converter();
+    print_nth_fibonacci();
+}
+
+fn print_nth_fibonacci() {
+    loop {
+        println!("Enter the nth fibonacci number you want to find:");
+        let mut n = String::new();
+        io::stdin().read_line(&mut n).expect("Failed to read line");
+        let n: u64 = match n.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Invalid input: n must be a number.");
+                continue;
+            }
+        };
+        let fibonacci = nth_fibonacci(n);
+        println!("The {}th fibonacci number is {}", n, fibonacci);
+    }
+}
+
+fn nth_fibonacci(n: u64) -> u64 {
+    match n {
+        0 => 0,
+        1 => 1,
+        _ => {
+            let mut a = 0;
+            let mut b = 1;
+            for _ in 2..n {
+                let c = a + b;
+                a = b;
+                b = c;
+            }
+            b
+        }
+    }
 }
 
 fn temperature_converter() {
@@ -21,7 +55,7 @@ fn temperature_converter() {
             Ok(num) => num,
             Err(_) => {
                 println!("Invalid input: temperature must be a number.");
-                return;
+                continue;
             }
         };
         if converter == "F" {
