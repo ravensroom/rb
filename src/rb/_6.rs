@@ -1,3 +1,5 @@
+#![allow(warnings)]
+
 pub fn run_enum() {
     // enum with different data types
     let m1 = Message::Write(String::from("hello"));

@@ -1,5 +1,5 @@
-use rust::rb;
+use rust::cp;
 
 fn main() {
-    rb::_6::run_enum();
+    cp::_2::number_converter::from_bin();
 }
