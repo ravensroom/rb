@@ -1,5 +1,8 @@
-use rust::cp;
+use rust::rb;
 
 fn main() {
-    cp::_2::number_converter::from_bin();
+    rb::_8::median::test_find_median();
+    rb::_8::mode::test_find_mode();
+    rb::_8::pig_latin::test_pig_latin();
+    rb::_8::employee::add_employee();
 }
