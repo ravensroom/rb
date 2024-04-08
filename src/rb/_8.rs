@@ -31,13 +31,14 @@ pub mod employee {
         }
     }
 
+    #[derive(PartialEq, Debug)]
     struct Employee {
         name: String,
         department: String,
     }
 
     fn get_new_employee(input: &String) -> Option<Employee> {
-        let splitted = &input.split_whitespace().collect::<Vec<&str>>();
+        let splitted = &input.trim().split_whitespace().collect::<Vec<&str>>();
         if splitted.len() != 4 || splitted[0] != "Add" || splitted[2] != "to" {
             return None;
         }
@@ -46,21 +47,27 @@ pub mod employee {
             department: splitted[3].to_string(),
         });
     }
+
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        #[test]
+        fn test_get_new_employee() {
+            let input = "Add John to HR".to_string();
+            let employee = get_new_employee(&input).unwrap();
+            assert_eq!(employee.name, "John");
+            assert_eq!(employee.department, "HR");
+
+            let input = "Add John to".to_string();
+            let employee = get_new_employee(&input);
+            assert_eq!(employee, None);
+        }
+    }
 }
 
 pub mod pig_latin {
-    pub fn test_pig_latin() {
-        let empty = to_pig_latin("");
-        assert_eq!(empty, "");
-
-        let pig_latin = to_pig_latin("apple");
-        assert_eq!(pig_latin, "apple-hay");
-
-        let pig_latin = to_pig_latin("banana");
-        assert_eq!(pig_latin, "anana-bay");
-    }
-
-    fn to_pig_latin(word: &str) -> String {
+    pub fn to_pig_latin(word: &str) -> String {
         let vowels = ['a', 'e', 'i', 'o', 'u'];
         let first_char = match word.chars().next() {
             Some(c) => c,
@@ -75,15 +82,27 @@ pub mod pig_latin {
             format!("{}-{}ay", rest, first_char)
         }
     }
+
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        #[test]
+        fn test_to_pig_latin() {
+            let empty = to_pig_latin("");
+            assert_eq!(empty, "");
+
+            let pig_latin = to_pig_latin("apple");
+            assert_eq!(pig_latin, "apple-hay");
+
+            let pig_latin = to_pig_latin("banana");
+            assert_eq!(pig_latin, "anana-bay");
+        }
+    }
 }
 
 pub mod mode {
-    pub fn test_find_mode() {
-        let mode = find_mode(&vec![5, 3, 6, 9, 7, 6, 6, 6, 6, 2]);
-        assert_eq!(mode, 6);
-    }
-
-    fn find_mode(numbers: &Vec<i32>) -> i32 {
+    pub fn find_mode(numbers: &Vec<i32>) -> i32 {
         use std::collections::HashMap;
 
         let mut map = HashMap::new();
@@ -103,18 +122,21 @@ pub mod mode {
 
         mode
     }
+
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        #[test]
+        fn test_find_mode() {
+            let mode = find_mode(&vec![5, 3, 6, 9, 7, 6, 6, 6, 6, 2]);
+            assert_eq!(mode, 6);
+        }
+    }
 }
 
 pub mod median {
-    pub fn test_find_median() {
-        let median = find_median(&vec![5.0, 3.0, 6.0, 9.0, 7.0]);
-        assert_eq!(median, 6.0);
-
-        let median = find_median(&vec![5.0, 3.0, 6.0, 9.0, 7.0, 8.0]);
-        assert_eq!(median, 6.5);
-    }
-
-    fn find_median(numbers: &Vec<f64>) -> f64 {
+    pub fn find_median(numbers: &Vec<f64>) -> f64 {
         let mut numbers = numbers.clone();
         numbers.sort_by(|a, b| a.partial_cmp(b).unwrap());
         let len = numbers.len();
@@ -123,6 +145,20 @@ pub mod median {
             (numbers[mid - 1] + numbers[mid]) / 2.0
         } else {
             numbers[len / 2]
+        }
+    }
+
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        #[test]
+        fn test_find_median() {
+            let median = find_median(&vec![5.0, 3.0, 6.0, 9.0, 7.0]);
+            assert_eq!(median, 6.0);
+
+            let median = find_median(&vec![5.0, 3.0, 6.0, 9.0, 7.0, 8.0]);
+            assert_eq!(median, 6.5);
         }
     }
 }
