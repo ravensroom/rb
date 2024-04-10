@@ -1,7 +1,8 @@
 [package]
-name = "rust"
+name = "rbcp"
 version = "0.1.0"
 edition = "2021"
+description = "A study companion for the rust book and csapp"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
