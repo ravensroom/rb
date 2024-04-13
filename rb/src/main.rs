@@ -1,4 +1,4 @@
 fn main() {
-    use cp::_2::number_converter;
-    number_converter::from_bin();
+    use rb::_16::fearless_concurrency;
+    fearless_concurrency::mutex();
 }

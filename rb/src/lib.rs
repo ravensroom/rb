@@ -5,5 +5,6 @@ pub mod _06;
 pub mod _08;
 pub mod _12;
 pub mod _13;
+pub mod _16;
 
 pub use _12::minigrep::run as minigrep;
